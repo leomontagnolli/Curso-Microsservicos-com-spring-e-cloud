@@ -35,8 +35,9 @@ public class WorkerController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Worker> detalhar(@PathVariable Long id){
+	public ResponseEntity<Worker> detalhar(@PathVariable Long id){		
 		Optional<Worker> worker = workerRepo.findById(id);
+		
 		logger.info("PORT: " + env.getProperty("local.server.port"));
 		
 		if(worker.isPresent())
