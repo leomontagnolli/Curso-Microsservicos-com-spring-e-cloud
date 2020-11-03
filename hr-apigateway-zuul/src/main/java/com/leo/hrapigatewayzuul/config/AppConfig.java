@@ -1,27 +1,23 @@
-package com.leo.hroatuh.config;
+package com.leo.hrapigatewayzuul.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+@RefreshScope
 @Configuration
 public class AppConfig {
 	
 	@Value("${jwt.secret}")
-	private String jwtSecret;
+	private String secret;
 	
-	@Bean
-	public BCryptPasswordEncoder bCrypt() {
-		return new BCryptPasswordEncoder();
-	}
-
 	@Bean
 	public JwtAccessTokenConverter accesToken() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey(jwtSecret);
+		tokenConverter.setSigningKey(secret);
 		return tokenConverter;
 	}
 	
@@ -29,4 +25,5 @@ public class AppConfig {
 	public JwtTokenStore tokenStore() {
 		return new JwtTokenStore(accesToken());
 	}
+
 }
