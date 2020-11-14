@@ -27,6 +27,7 @@ public class UserController {
 	
 	@GetMapping("/search")
 	public ResponseEntity<User> findByemail(@RequestParam String email){
+		System.out.println("AQUi");
 		User user = repository.findByEmail(email);
 		return ResponseEntity.ok(user);
 		

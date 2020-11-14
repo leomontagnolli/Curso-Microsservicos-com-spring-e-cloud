@@ -31,8 +31,6 @@ public class WorkerController {
 	@Autowired
 	private WorkerRepository workerRepo;
 	
-	@Value("${test.config}")
-	private String testConfig;
 	
 	@GetMapping
 	public ResponseEntity<List<Worker>> getAll(){
@@ -55,8 +53,8 @@ public class WorkerController {
 	
 	@GetMapping("/configs")
 	public ResponseEntity<?> pegarConfigs(){
-		logger.info("CONFIG " + testConfig);
-		return ResponseEntity.ok(testConfig);
+		//logger.info("CONFIG " + testConfig);
+		return ResponseEntity.ok("A");
 	}
 
 }
